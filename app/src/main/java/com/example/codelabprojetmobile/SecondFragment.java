@@ -9,7 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+
+
 public class SecondFragment extends Fragment {
+    Integer myArg = SecondFragmentArgs.fromBundle(getArguments()).getMyArg();
+
 
     @Override
     public View onCreateView(
@@ -21,6 +25,7 @@ public class SecondFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
         view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
@@ -30,5 +35,13 @@ public class SecondFragment extends Fragment {
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });
+        Integer count = myArg;
+        Random random = new java.util.Random();
+        Integer randomNumber = 0;
+        if (count > 0) {
+            randomNumber = random.nextInt(count + 1);
+        }
+        TextView randomView = view.getRootView().findViewById(R.id.textview_random);
+        randomView.setText(randomNumber.toString());
     }
 }
